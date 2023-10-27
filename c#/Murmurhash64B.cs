@@ -74,7 +74,79 @@ namespace utility
  
         public static ulong StringToHashValue(string source)
         {
-            byte[] bytes = System.Text.Encoding.Default.GetBytes(source);
+            byte[] bytes = Encoding.UTF8.GetBytes(source);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(long v1, int v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[v1bytes.Length + v2bytes.Length];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, v1bytes.Length);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, v1bytes.Length, v2bytes.Length);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(long v1, uint v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[v1bytes.Length + v2bytes.Length];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, v1bytes.Length);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, v1bytes.Length, v2bytes.Length);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(ulong v1, int v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[v1bytes.Length + v2bytes.Length];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, v1bytes.Length);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, v1bytes.Length, v2bytes.Length);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(ulong v1, uint v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[v1bytes.Length + v2bytes.Length];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, v1bytes.Length);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, v1bytes.Length, v2bytes.Length);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(long v1, long v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[v1bytes.Length + v2bytes.Length];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, v1bytes.Length);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, v1bytes.Length, v2bytes.Length);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(long v1, ulong v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[12];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, 8);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, 8, 4);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(ulong v1, long v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[v1bytes.Length + v2bytes.Length];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, v1bytes.Length);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, v1bytes.Length, v2bytes.Length);
+            return MakeHashValue(bytes);
+        }
+        public static ulong HashII(ulong v1, ulong v2)
+        {
+            byte[] v1bytes = System.BitConverter.GetBytes(v1);
+            byte[] v2bytes = System.BitConverter.GetBytes(v2);
+            byte[] bytes = new byte[12];
+            System.Buffer.BlockCopy(v1bytes, 0, bytes, 0, 8);
+            System.Buffer.BlockCopy(v2bytes, 0, bytes, 8, 4);
             return MakeHashValue(bytes);
         }
     }

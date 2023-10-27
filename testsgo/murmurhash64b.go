@@ -1,6 +1,8 @@
 package main
 
-import "encoding/binary"
+import (
+	"encoding/binary"
+)
 
 func Murmurhash64b(key []byte, seed uint32) uint64 {
 	const (
@@ -78,4 +80,22 @@ func Murmurhash64b(key []byte, seed uint32) uint64 {
 	h = (h << 32) | uint64(h2)
 
 	return h
+}
+
+func Murmurhash64bStr(str string) uint64 {
+	return Murmurhash64b([]byte(str), 0)
+}
+
+func Murmurhash64bLD(v1 int64, v2 int32) uint64 {
+	buf := make([]byte, 12)
+	binary.LittleEndian.PutUint64(buf, uint64(v1))
+	binary.LittleEndian.PutUint32(buf[8:], uint32(v2))
+	return Murmurhash64b(buf, 0)
+}
+
+func Murmurhash64bDD(v1 int64, v2 int64) uint64 {
+	buf := make([]byte, 16)
+	binary.LittleEndian.PutUint64(buf, uint64(v1))
+	binary.LittleEndian.PutUint64(buf[8:], uint64(v2))
+	return Murmurhash64b(buf, 0)
 }
