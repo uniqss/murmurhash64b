@@ -1,18 +1,12 @@
 #pragma once
 
-#include <iostream>
-
 namespace utility {
 static inline unsigned long long MurmurHash64B(const void *key, int len, unsigned int seed = 0xee6b27eb) {
     const unsigned int m = 0x5bd1e995;
     const int r = 24;
 
-#define PVARS(reason) std::cout << "h1:" << h1 << "h2:" << h2 << " len:" << len << " reason:" << reason << std::endl;
-
     unsigned int h1 = seed ^ len;
     unsigned int h2 = 0;
-
-    PVARS("init");
 
     const unsigned int *data = (const unsigned int *)key;
 
@@ -25,8 +19,6 @@ static inline unsigned long long MurmurHash64B(const void *key, int len, unsigne
         h1 ^= k1;
         len -= 4;
 
-        PVARS("round.1");
-
         unsigned int k2 = *data++;
         k2 *= m;
         k2 ^= k2 >> r;
@@ -34,8 +26,6 @@ static inline unsigned long long MurmurHash64B(const void *key, int len, unsigne
         h2 *= m;
         h2 ^= k2;
         len -= 4;
-
-        PVARS("round.2");
     }
 
     if (len >= 4) {
